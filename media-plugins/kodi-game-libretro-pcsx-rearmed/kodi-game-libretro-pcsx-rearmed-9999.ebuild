@@ -21,6 +21,7 @@ IUSE=""
 src_configure() {
        local mycmakeargs=(
 		"-Dlibretro-pcsx-rearmed_DIR=${WORKDIR}"
+		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
 	echo "set(PCSX_REARMED_LIB /usr/games/lib64/libretro/pcsx_rearmed_libretro.so)" > "${WORKDIR}/libretro-pcsx-rearmedConfig.cmake"
 
@@ -36,7 +37,7 @@ src_compile() {
 
 DEPEND="
 	media-tv/kodi
-	media-libs/kodi-game
+	media-libs/kodi-game-libretro
 	media-libs/kodiplatform
 	dev-libs/libp8-platform
 	dev-libs/libpcre
