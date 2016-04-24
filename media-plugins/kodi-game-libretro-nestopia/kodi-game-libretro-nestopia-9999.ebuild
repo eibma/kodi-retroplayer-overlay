@@ -36,7 +36,7 @@ src_compile() {
 DEPEND="
 	media-tv/kodi
 	media-libs/kodiplatform
-	media-libs/kodi-game-libretro
+	media-plugins/kodi-game-libretro
 	dev-libs/libp8-platform
 	dev-libs/libpcre
 	games-emulation/nestopia-libretro
