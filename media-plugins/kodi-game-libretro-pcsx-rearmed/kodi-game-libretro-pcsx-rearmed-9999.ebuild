@@ -36,6 +36,7 @@ src_compile() {
 
 DEPEND="
 	media-tv/kodi
+	media-libs/kodi-game
 	media-libs/kodiplatform
 	dev-libs/libp8-platform
 	dev-libs/libpcre
