@@ -9,7 +9,7 @@ EGIT_BRANCH="master"
 
 inherit git-r3 cmake-utils kodi-addon
 
-DESCRIPTION="snex9x-next SNES emulator"
+DESCRIPTION="bsnes-mercury SNES emulator with balanced profile"
 HOMEPAGE="https://kodi.tv"
 SRC_URI=""
 
@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-bsnes-mercury-balanced_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
-	echo "set(BSNES_MERCURY_BALANCED_LIB /usr/games/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/bsnes_mercury_balancedConfig.cmake"
+        echo "set(BSNES_MERCURY_LIB /usr/games/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/libretro-bsnes-mercury-balancedConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
@@ -32,8 +32,6 @@ src_configure() {
 src_compile() {
         cmake-utils_src_compile
 }
-
-
 
 DEPEND="
 	media-tv/kodi
