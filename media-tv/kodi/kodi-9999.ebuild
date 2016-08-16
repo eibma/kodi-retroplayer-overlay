@@ -17,7 +17,7 @@ CODENAME="Krypton"
 case ${PV} in
 9999)
 	EGIT_REPO_URI="git://github.com/garbear/xbmc.git"
-	EGIT_BRANCH="retroplayer-17alpha1"
+	EGIT_BRANCH="retroplayer-17alpha3"
 	inherit git-r3
 	;;
 *|*_p*)
@@ -253,10 +253,10 @@ src_install() {
 	domenu tools/Linux/kodi.desktop
 	newicon media/icon48x48.png kodi.png
 
-	# Remove fonconfig settings that are used only on MacOSX.
+	# Remove fontconfig settings that are used only on MacOSX.
 	# Can't be patched upstream because they just find all files and install
 	# them into same structure like they have in git.
-	rm -rf "${ED}"/usr/share/kodi/system/players/dvdplayer/etc
+	rm -rf "${ED}"/usr/share/kodi/system/players
 
 	python_domodule tools/EventClients/lib/python/xbmcclient.py
 	python_newscript "tools/EventClients/Clients/Kodi Send/kodi-send.py" kodi-send
