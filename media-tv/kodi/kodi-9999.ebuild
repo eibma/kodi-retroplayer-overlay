@@ -17,7 +17,7 @@ CODENAME="Krypton"
 case ${PV} in
 9999)
 	EGIT_REPO_URI="git://github.com/garbear/xbmc.git"
-	EGIT_BRANCH="retroplayer-17alpha3"
+	EGIT_BRANCH="retroplayer-17beta3"
 	inherit git-r3
 	;;
 *|*_p*)
