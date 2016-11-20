@@ -5,7 +5,7 @@
 EAPI=5
 
 EGIT_REPO_URI="https://github.com/kodi-game/peripheral.joystick.git"
-EGIT_BRANCH="master"
+EGIT_BRANCH="retroplayer"
 
 inherit git-r3 cmake-utils kodi-addon
 
