@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-pcsx-rearmed_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
-	echo "set(PCSX_REARMED_LIB /usr/games/lib64/libretro/pcsx_rearmed_libretro.so)" > "${WORKDIR}/libretro-pcsx-rearmedConfig.cmake"
+	echo "set(PCSX-REARMED_LIB /usr/games/lib64/libretro/pcsx_rearmed_libretro.so)" > "${WORKDIR}/libretro-pcsx-rearmedConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
@@ -36,11 +36,12 @@ src_compile() {
 
 
 DEPEND="
-	media-tv/kodi
-	media-plugins/kodi-game-libretro
-	media-libs/kodiplatform
-	dev-libs/libp8-platform
-	dev-libs/libpcre
+        media-tv/kodi
+        media-libs/kodi-platform
+        media-plugins/kodi-game-libretro
+        media-plugins/kodi-peripheral-joystick
+        dev-libs/libplatform
+        dev-libs/libpcre
 	games-emulation/pcsx-rearmed-libretro
 	"
 
