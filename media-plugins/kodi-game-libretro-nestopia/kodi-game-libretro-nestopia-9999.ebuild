@@ -21,7 +21,7 @@ IUSE=""
 src_configure() {
 	local mycmakeargs=(
 		"-Dlibretro-nestopia_DIR=${WORKDIR}"
-		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
+		"-DCMAKE_INSTALL_LIBDIR=/usr/share/kodi"
 	)
 	echo "set(NESTOPIA_LIB /usr/games/lib64/libretro/nestopia_libretro.so)" > "${WORKDIR}/libretro-nestopiaConfig.cmake"
 
@@ -35,9 +35,10 @@ src_compile() {
 
 DEPEND="
 	media-tv/kodi
-	media-libs/kodiplatform
+	media-libs/kodi-platform
 	media-plugins/kodi-game-libretro
-	dev-libs/libp8-platform
+	media-plugins/kodi-peripheral-joystick
+	dev-libs/libplatform
 	dev-libs/libpcre
 	games-emulation/nestopia-libretro
 	"

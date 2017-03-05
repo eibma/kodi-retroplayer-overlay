@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-bsnes-mercury-balanced_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
-        echo "set(BSNES_MERCURY_LIB /usr/games/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/libretro-bsnes-mercury-balancedConfig.cmake"
+        echo "set(BSNES-MERCURY-BALANCED_LIB /usr/games/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/libretro-bsnes-mercury-balancedConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
@@ -34,11 +34,12 @@ src_compile() {
 }
 
 DEPEND="
-	media-tv/kodi
-	media-plugins/kodi-game-libretro
-	media-libs/kodiplatform
-	dev-libs/libp8-platform
-	dev-libs/libpcre
+        media-tv/kodi
+        media-libs/kodi-platform
+        media-plugins/kodi-game-libretro
+        media-plugins/kodi-peripheral-joystick
+        dev-libs/libplatform
+        dev-libs/libpcre
 	games-emulation/bsnes-libretro
 	"
 
