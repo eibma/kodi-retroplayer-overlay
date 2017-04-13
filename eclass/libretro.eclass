@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -13,26 +13,47 @@
 # ebuilds for Libretro-related ebuilds, including those for both low-level
 # Libretro cores and assets as well for Libretro and Retroarch themselves.
 
-#FIXME: as of ECLASS 6 the use of games.eclass is deprecated, we should
-#change this back in the future, see #574082 for more details.
-inherit games
-
-# @ECLASS-VARIABLE: LIBRETRO_LIB_DIR
-# @DESCRIPTION:
-# Absolute path of the directory containing Libretro shared libraries.
-LIBRETRO_LIB_DIR=${GAMES_PREFIX}/"$(get_libdir)"/libretro
-
-# @ECLASS-VARIABLE: RETROARCH_LIB_DIR
-# @DESCRIPTION:
-# Absolute path of the directory containing Retroarch shared libraries.
-RETROARCH_LIB_DIR=${GAMES_PREFIX}/"$(get_libdir)"/retroarch
-
 # @ECLASS-VARIABLE: LIBRETRO_DATA_DIR
 # @DESCRIPTION:
 # Absolute path of the directory containing Libretro data files.
-LIBRETRO_DATA_DIR=${GAMES_DATADIR}/libretro
+LIBRETRO_DATA_DIR="${EROOT}usr/share/libretro"
 
 # @ECLASS-VARIABLE: RETROARCH_DATA_DIR
 # @DESCRIPTION:
 # Absolute path of the directory containing Retroarch data files.
-RETROARCH_DATA_DIR=${GAMES_DATADIR}/retroarch
+RETROARCH_DATA_DIR="${EROOT}usr/share/retroarch"
+
+# @ECLASS-VARIABLE: LIBRETRO_COMMIT_SHA
+# @DESCRIPTION:
+# Commit SHA used for SRC_URI will die if not set in <9999 ebuilds.
+# Needs to be set before inherit.
+: ${LIBRETRO_COMMIT_SHA:=die}}
+
+# @ECLASS-VARIABLE: LIBRETRO_REPO_NAME
+# @DESCRIPTION:
+# Contains the real repo name of the core formatted as "repouser/reponame".
+# Needs to be set before inherit. Otherwise defaults to "libretro/${PN}"
+: ${LIBRETRO_REPO_NAME:="libretro/${PN}"}
+
+# Offload EGIT_REPO_URI and SRC_URI to eclass only in supported ebuilds
+if [[ ${PV} = 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/${LIBRETRO_REPO_NAME}.git"
+fi
+
+if [[ ! ${PV} = 9999 ]] && [[ ! ${PN} = retroarch ]] && [[ ! ${PN} = ppsspp-libretro ]] && [[ ! ${PN} = psp1-libretro ]] && [[ ! ${PN} = psp-assets ]]; then
+	[ ${LIBRETRO_COMMIT_SHA} = die ] && die "LIBRETRO_COMMIT_SHA must be set before inherit."
+	SRC_URI="https://github.com/${LIBRETRO_REPO_NAME}/archive/${LIBRETRO_COMMIT_SHA}.tar.gz -> ${P}.tar.gz"
+	RESTRICT="primaryuri"
+	S="${WORKDIR}/${LIBRETRO_REPO_NAME##*/}-${LIBRETRO_COMMIT_SHA}"
+fi
+
+# Workaround for ebuilds needing submodules
+if [[ ${PN} = retroarch ]] || [[ ${PN} = ppsspp-libretro ]] || [[ ${PN} = psp1-libretro ]] && [[ ! ${PV} = 9999 ]]; then
+	inherit git-r3
+	
+	SRC_URI=""
+	EGIT_REPO_URI="https://github.com/${LIBRETRO_REPO_NAME}.git"
+	[ ${LIBRETRO_COMMIT_SHA} = die ] && die "LIBRETRO_COMMIT_SHA must be set before inherit."
+	EGIT_COMMIT="${LIBRETRO_COMMIT_SHA}"
+fi
