@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-bsnes-mercury-balanced_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
-        echo "set(BSNES-MERCURY-BALANCED_LIB /usr/games/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/libretro-bsnes-mercury-balancedConfig.cmake"
+        echo "set(BSNES-MERCURY-BALANCED_LIB /usr/lib64/libretro/bsnes_balanced_libretro.so)" > "${WORKDIR}/libretro-bsnes-mercury-balancedConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
