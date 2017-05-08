@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-nestopia_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/share/kodi"
 	)
-	echo "set(NESTOPIA_LIB /usr/games/lib64/libretro/nestopia_libretro.so)" > "${WORKDIR}/libretro-nestopiaConfig.cmake"
+	echo "set(NESTOPIA_LIB /usr/lib64/libretro/nestopia_libretro.so)" > "${WORKDIR}/libretro-nestopiaConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
