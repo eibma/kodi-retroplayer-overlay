@@ -23,7 +23,7 @@ src_configure() {
 		"-Dlibretro-pcsx-rearmed_DIR=${WORKDIR}"
 		"-DCMAKE_INSTALL_LIBDIR=/usr/lib64/kodi"
        )
-	echo "set(PCSX-REARMED_LIB /usr/games/lib64/libretro/pcsx_rearmed_libretro.so)" > "${WORKDIR}/libretro-pcsx-rearmedConfig.cmake"
+	echo "set(PCSX-REARMED_LIB /usr/lib64/libretro/pcsx_rearmed_libretro.so)" > "${WORKDIR}/libretro-pcsx-rearmedConfig.cmake"
 
 	CMAKE_USE_DIR="${S}"
 	cmake-utils_src_configure
